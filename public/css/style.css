@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 :root {
-  --dark-color-a: #765A4A;
-  --dark-color-b: #A08A7B;
-  --light-color: #fafafa;
+  --dark-color-a: #000000;
+  --dark-color-b: #3b3838;
+  --light-color: #F3D366;
   --success-color: #5cb85c;
   --error-color: #d9534f;
+  --font-color-standard: #fff;
 }
 
 * {
@@ -21,7 +22,7 @@ body {
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat;
-  margin: 20px;
+  /* margin: 20px; */
   height: 100vh;
 }
 
@@ -45,9 +46,11 @@ a {
 /* Chat Page */
 
 .chat-container {
-  max-width: 1100px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 50rem;
   background: #fff;
-  margin: 30px auto;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
@@ -95,27 +98,45 @@ a {
 
 .chat-messages {
   padding: 30px;
-  max-height: 500px;
   overflow-y: scroll;
+  height: 70vh;
+  background: var(--dark-color-b);
+}
+
+@media only screen and (min-width: 1600px) {
+  .chat-messages {
+    padding: 30px;
+    overflow-y: scroll;
+    height: 77vh;
+    background: var(--dark-color-b);
+  }
 }
 
 .chat-messages .message {
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
-  background-color: #f5f5f5;
+  background: var(--dark-color-a);
 }
 
 .chat-messages .message .meta {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
-  color: #370F08;
+  color: var(--font-color-standard);
   opacity: 0.7;
   margin-bottom: 7px;
 }
 
+.text {
+  font-size: 12px;
+  color: var(--font-color-standard);
+  display: inline;
+  white-space: break-spaces;
+  word-break: break-all;
+}
+
 .chat-messages .message .meta span {
-  color: #777;
+  color: var(--font-color-standard);
 }
 
 .chat-form-container {
@@ -127,11 +148,12 @@ a {
   display: flex;
 }
 
-.chat-form-container input[type="text"] {
+.chat-form-container textarea {
   font-size: 16px;
   padding: 5px;
-  height: 40px;
+  height: 80px;
   flex: 1;
+  resize: none;
 }
 
 /* Join Page */
@@ -209,11 +231,9 @@ a {
 .footer-container{
   color: #370F08;
   font-size: 0.7em;
-  text-align: center;
   position: fixed;
-  bottom: 1%;
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 1rem;
+  right: 1rem;
 }
 .reddit {
   margin-right: 10px;

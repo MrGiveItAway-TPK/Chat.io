@@ -56,7 +56,7 @@ chatForm.addEventListener("submit", (e) => {
 
   // clear inputs
   e.target.elements.msg.value = '';
-  e.target.elements.msg.focus() = '';
+  e.target.elements.msg.focus = '';
 
 });
 
@@ -98,7 +98,31 @@ function outputMessage(message) {
 
   // add this brand new div to messages
   document.querySelector(".chat-messages").appendChild(div);
+
+  // Show Chrome notification
+  if (Notification.permission === "granted") {
+    if (message.username !=  username){
+      const notification = new Notification("New Message", {
+        body: message.text,
+        icon: "../Images/chat-icon.png"
+      });
+    }
+  }
 }
+
+// Request permission for Chrome notifications
+function requestNotificationPermission() {
+  if (Notification.permission !== "granted") {
+    Notification.requestPermission().then(function(permission) {
+      if (permission === "granted") {
+        console.log("Notification permission granted");
+      }
+    });
+  }
+}
+
+// Request notification permission on page load
+requestNotificationPermission();
 
 // Display current roomname to DOM (sidebar)
 function outputRoomName(room){
@@ -109,3 +133,21 @@ function outputRoomName(room){
 function outputUsers(users){
   userList.innerHTML = `${users.map(user => `<li>${user.username}</li>`).join('')}`;
 }
+
+// TextArea Key Events
+$('#msg').keydown(function(e) {
+  if (e.keyCode === 13 && e.shiftKey) {
+    $(this).val(function(i, val) {
+      return val + "\n";
+    });
+  } else if (e.keyCode === 13 && e.ctrlKey) {
+    $(this).val(function(i, val) {
+      return val + "\n";
+    });
+  }
+}).keypress(function(e) {
+  if (e.keyCode === 13 && !e.shiftKey && !e.ctrlKey) {
+    $('#submit_btn').click();
+    return false;
+  }
+});

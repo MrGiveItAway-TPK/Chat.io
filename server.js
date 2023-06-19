@@ -20,7 +20,7 @@ const io = socketio(server);
 
 // global constants
 const PORT = process.env.PORT || 3000;
-const botName = 'JustTalk bot';
+const botName = 'Chat.io bot';
 
 // utility functions
 const formatMessage = require('./utils/messages');
@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
       'message',
       formatMessage(
         botName,
-        'Welcome to JustTalk! This is a chatting platform developed by Nikhil Sourav!'
+        'Welcome to Chat.io! This is a chatting platform developed by Nikhil Sourav / Continued By Munes Bani Fawaz!'
       )
     );
 
