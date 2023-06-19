@@ -100,14 +100,31 @@ function outputMessage(message) {
   document.querySelector(".chat-messages").appendChild(div);
 
   // Show Chrome notification
+  let isNotificationDisplayed = false;
+
   if (Notification.permission === "granted") {
-    if (message.username !=  username){
-      const notification = new Notification("New Message", {
-        body: message.text,
-        icon: "../Images/chat-icon.png"
-      });
+    if (message.username != username) {
+      const showNotification = () => {
+        if (!isNotificationDisplayed) {
+          isNotificationDisplayed = true;
+  
+          const notification = new Notification("New Message", {
+            body: message.text,
+            icon: "../Images/chat-icon.png"
+          });
+  
+          // Reset the flag
+          isNotificationDisplayed = false;
+        }
+      };
+  
+      // Check if the document is hidden (user is on a different tab or browser is minimized)
+      if (document.hidden) {
+        showNotification();
+      }
     }
   }
+  
 }
 
 // Request permission for Chrome notifications
