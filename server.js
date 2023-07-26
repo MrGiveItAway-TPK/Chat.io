@@ -20,7 +20,7 @@ const io = socketio(server);
 
 // global constants
 const PORT = process.env.PORT || 3000;
-const botName = 'Chat.io bot';
+const botName = 'MBF Chat bot';
 
 // utility functions
 const formatMessage = require('./utils/messages');
@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
       'message',
       formatMessage(
         botName,
-        'Welcome to Chat.io! This is a chatting platform developed by Nikhil Sourav / Continued By Munes Bani Fawaz!'
+        'Welcome to MBF Chat! This is a chatting platform developed by Nikhil Sourav / Continued By Munes Bani Fawaz!'
       )
     );
 
